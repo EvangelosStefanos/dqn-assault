@@ -3,9 +3,9 @@ FROM python:3.9
 
 WORKDIR /app
 
-RUN pip install torch torchvision torchaudio
+COPY requirements.txt requirements.txt
 
-RUN pip install gymnasium[atari,accept-rom-license] matplotlib torchinfo moviepy
+RUN pip install -r requirements.txt
 
 COPY src src
 
