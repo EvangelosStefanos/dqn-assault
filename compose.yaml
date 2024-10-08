@@ -10,4 +10,4 @@ services:
               count: 1
               capabilities: [gpu]
     volumes:
-      - ./app:/app
+      - ./output:/app/output

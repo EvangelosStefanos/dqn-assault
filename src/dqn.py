@@ -501,7 +501,7 @@ def run(
     print(f"Using CUDA: {use_cuda}")
     print()
 
-    save_dir = Path("checkpoints") / (
+    save_dir = Path("output/checkpoints") / (
         str(prefix) + "_" + datetime.datetime.now().strftime("%Y-%m-%dT%H-%M-%S")
     )
     save_dir.mkdir(parents=True)

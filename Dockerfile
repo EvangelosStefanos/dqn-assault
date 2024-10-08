@@ -7,6 +7,6 @@ RUN pip install torch torchvision torchaudio
 
 RUN pip install gymnasium[atari,accept-rom-license] matplotlib torchinfo moviepy
 
-COPY app/src src/
+COPY src src
 
 CMD [ "python", "src/main.py"]
