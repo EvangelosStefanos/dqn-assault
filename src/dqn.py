@@ -35,6 +35,11 @@ def run(
 
     from torchinfo import summary
 
+    OUTPUT_DIR = "output"
+    Path(OUTPUT_DIR).mkdir(exist_ok=True)
+    OUTPUT_VIDEO_DIR = "output/videos"
+    Path(OUTPUT_VIDEO_DIR).mkdir(exist_ok=True)
+
     eps_without_improvement = 0
     max_eps_without_improvement = 200
     max_ep_mean_reward = 0

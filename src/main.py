@@ -1,7 +1,3 @@
-import subprocess
-
-subprocess.run(["pip", "freeze"])
-
 import time
 
 start = time.time()
