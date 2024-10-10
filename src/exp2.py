@@ -1,12 +1,12 @@
 import dqn
 import matplotlib.pyplot as plt
-import time, datetime
-
+import time
 import settings
+import shared
 
 # experiment 2
 # modify gamma, (low, middle, high)
-episodes = 101
+episodes = 1001
 exploration_rate_decay = 0.99996
 loggers = {}
 name = "02"
@@ -27,7 +27,7 @@ loggers["gamma=.001"] = dqn.run(
 )
 print("///////////////////////////////////////////////////////////////////////")
 print("//// ENDING EXPERIMENT: RUNNING WITH VERY LOW GAMMA")
-print("//// RUN TIME: ", (time.time() - start) / 60, " minutes")
+print(f"//// RUN TIME: {shared.runtime(start=start)}")
 print("///////////////////////////////////////////////////////////////////////")
 
 start = time.time()
@@ -42,7 +42,7 @@ loggers["gamma=.1"] = dqn.run(
 )
 print("///////////////////////////////////////////////////////////////////////")
 print("//// ENDING EXPERIMENT: RUNNING WITH LOW GAMMA")
-print("//// RUN TIME: ", (time.time() - start) / 60, " minutes")
+print(f"//// RUN TIME: {shared.runtime(start=start)}")
 print("///////////////////////////////////////////////////////////////////////")
 
 
@@ -61,7 +61,7 @@ loggers["gamma=.5"] = dqn.run(
 )
 print("///////////////////////////////////////////////////////////////////////")
 print("//// ENDING EXPERIMENT: RUNNING WITH MID GAMMA")
-print("//// RUN TIME: ", (time.time() - start) / 60, " minutes")
+print(f"//// RUN TIME: {shared.runtime(start=start)}")
 print("///////////////////////////////////////////////////////////////////////")
 
 
@@ -80,7 +80,7 @@ loggers["gamma=.9"] = dqn.run(
 )
 print("///////////////////////////////////////////////////////////////////////")
 print("//// ENDING EXPERIMENT: RUNNING WITH HIGH GAMMA")
-print("//// RUN TIME: ", (time.time() - start) / 60, " minutes")
+print(f"//// RUN TIME: {shared.runtime(start=start)}")
 print("///////////////////////////////////////////////////////////////////////")
 
 start = time.time()
@@ -95,7 +95,7 @@ loggers["gamma=.999"] = dqn.run(
 )
 print("///////////////////////////////////////////////////////////////////////")
 print("//// ENDING EXPERIMENT: RUNNING WITH VERY HIGH GAMMA")
-print("//// RUN TIME: ", (time.time() - start) / 60, " minutes")
+print(f"//// RUN TIME: {shared.runtime(start=start)}")
 print("///////////////////////////////////////////////////////////////////////")
 print("\a")
 

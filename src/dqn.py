@@ -1,11 +1,6 @@
 # based on https://pytorch.org/tutorials/intermediate/mario_rl_tutorial.html
 # upgraded from gym to gymnasium v0.29.1
-# TODO [x] add some kind of rendering support
-# TODO [x] test rendering support
-# TODO [x] improve charts (x limits...)
-# TODO [ ] investigate dqn network architecture
-# TODO [ ] investigate multiple seeds
-# https://stackoverflow.com/questions/77042526/how-to-record-and-save-video-of-gym-environment/77783510#77783510
+# rendering: https://stackoverflow.com/questions/77042526/how-to-record-and-save-video-of-gym-environment/77783510#77783510
 
 
 def run(
@@ -18,6 +13,7 @@ def run(
     net=None,
     memory=None,
     prefix="",
+    render=False,
 ):
     import torch
     from torch import nn
@@ -40,26 +36,23 @@ def run(
     OUTPUT_VIDEO_DIR = "output/videos"
     Path(OUTPUT_VIDEO_DIR).mkdir(exist_ok=True)
 
-    eps_without_improvement = 0
-    max_eps_without_improvement = 200
-    max_ep_mean_reward = 0
-
     # Initialize assault environment
-    env = gym.make("Assault-v4", render_mode="rgb_array")
-    env.metadata["render_fps"] = 30
-    env = gym.wrappers.RecordVideo(
-        env=env,
-        video_folder="output/videos",
-        name_prefix=prefix,
-        episode_trigger=lambda x: (
-            (x % episodes == (episodes - 1))
-            or (max_eps_without_improvement - eps_without_improvement == 1)
-        ),
-    )
+    if render:
+        env = gym.make("Assault-v4", render_mode="rgb_array")
+        env.metadata["render_fps"] = 30
+        env = gym.wrappers.RecordVideo(
+            env=env,
+            video_folder=OUTPUT_VIDEO_DIR,
+            name_prefix=prefix,
+            episode_trigger=lambda x: x % episodes == 0,
+        )
+    else:
+        env = gym.make("Assault-v4")
 
     env.reset()
 
-    env.start_video_recorder()
+    if render:
+        env.start_video_recorder()
 
     next_state, reward, terminated, truncated, info = env.step(action=0)
     done = terminated or truncated
@@ -533,7 +526,8 @@ def run(
             # Agent performs action
             next_state, reward, terminated, truncated, info = env.step(action)
             done = terminated or truncated
-            env.render()
+            if render:
+                env.render()
 
             # Remember
             mario.cache(state, next_state, action, reward, done)
@@ -557,18 +551,22 @@ def run(
                 episode=e, epsilon=mario.exploration_rate, step=mario.curr_step
             )
 
-        mean_ep_reward = np.mean(logger.ep_rewards[:-10])
-        print(
-            f"{mean_ep_reward:.1f}, {max_ep_mean_reward:.1f}, {eps_without_improvement} / {max_eps_without_improvement}"
-        )
-        if mean_ep_reward > max_ep_mean_reward:
-            max_ep_mean_reward = mean_ep_reward
-            eps_without_improvement = 0
-        else:
-            eps_without_improvement += 1
-        if eps_without_improvement > max_eps_without_improvement:
-            break
     mario.save()
-    env.close_video_recorder()
+    if render:
+        env.close_video_recorder()
     # In[ ]:
+    # Run for 1 more episode with render support
+    if episodes > 1:
+        run(
+            episodes=1,
+            exploration_rate=exploration_rate,
+            exploration_rate_decay=exploration_rate_decay,
+            exploration_rate_min=exploration_rate_min,
+            gamma=gamma,
+            optimizer=optimizer,
+            net=net,
+            memory=memory,
+            prefix=prefix,
+            render=True,
+        )
     return logger

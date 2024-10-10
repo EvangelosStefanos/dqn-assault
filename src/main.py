@@ -1,4 +1,4 @@
-import time
+import time, shared
 
 start = time.time()
 
@@ -8,4 +8,4 @@ import exp3
 import exp4
 import exp5
 
-print("//// RUN TIME: ", (time.time() - start) / 60, " minutes")
+print(f"//// RUN TIME: {shared.runtime(start=start)}")

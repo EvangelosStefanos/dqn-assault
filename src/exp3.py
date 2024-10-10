@@ -1,12 +1,12 @@
 import dqn
 import matplotlib.pyplot as plt
-import time, datetime
-
+import time
 import settings
+import shared
 
 # experiment 3
 # exploration (low, middle, high)
-episodes = 101
+episodes = 1001
 loggers = {}
 name = "03"
 
@@ -24,7 +24,7 @@ loggers["exp_rate=high"] = dqn.run(
 )
 print("///////////////////////////////////////////////////////////////////////")
 print("//// ENDING EXPERIMENT: RUNNING WITH HIGH EXPLORATION RATE")
-print("//// RUN TIME: ", (time.time() - start) / 60, " minutes")
+print(f"//// RUN TIME: {shared.runtime(start=start)}")
 print("///////////////////////////////////////////////////////////////////////")
 
 # middle exploration
@@ -40,7 +40,7 @@ loggers["exp_rate=middle"] = dqn.run(
 )
 print("///////////////////////////////////////////////////////////////////////")
 print("//// ENDING EXPERIMENT: RUNNING WITH MID EXPLORATION RATE")
-print("//// RUN TIME: ", (time.time() - start) / 60, " minutes")
+print(f"//// RUN TIME: {shared.runtime(start=start)}")
 print("///////////////////////////////////////////////////////////////////////")
 
 # low exploration
@@ -56,7 +56,7 @@ loggers["exp_rate=low"] = dqn.run(
 )
 print("///////////////////////////////////////////////////////////////////////")
 print("//// ENDING EXPERIMENT: RUNNING WITH LOW EXPLORATION RATE")
-print("//// RUN TIME: ", (time.time() - start) / 60, " minutes")
+print(f"//// RUN TIME: {shared.runtime(start=start)}")
 print("///////////////////////////////////////////////////////////////////////")
 print("\a")
 
