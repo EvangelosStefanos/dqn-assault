@@ -8,7 +8,7 @@ import shared
 
 # experiment 4
 # modify optimizer
-episodes = 1001
+episodes = 201
 exploration_rate_decay = 0.99996
 loggers = {}
 name = "04"

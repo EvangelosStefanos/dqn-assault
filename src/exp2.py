@@ -6,7 +6,7 @@ import shared
 
 # experiment 2
 # modify gamma, (low, middle, high)
-episodes = 1001
+episodes = 201
 exploration_rate_decay = 0.99996
 loggers = {}
 name = "02"

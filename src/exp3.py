@@ -6,7 +6,7 @@ import shared
 
 # experiment 3
 # exploration (low, middle, high)
-episodes = 1001
+episodes = 201
 loggers = {}
 name = "03"
 
