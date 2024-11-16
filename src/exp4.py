@@ -2,13 +2,13 @@ import dqn
 import torch.nn as nn
 import torch.optim
 import matplotlib.pyplot as plt
-import time, datetime
-
+import time
 import settings
+import shared
 
 # experiment 4
 # modify optimizer
-episodes = 101
+episodes = 201
 exploration_rate_decay = 0.99996
 loggers = {}
 name = "04"
@@ -26,7 +26,7 @@ loggers["optim=adam"] = dqn.run(
 )
 print("///////////////////////////////////////////////////////////////////////")
 print("//// ENDING EXPERIMENT: RUNNING WITH ADAM OPTIMIZER")
-print("//// RUN TIME: ", (time.time() - start) / 60, " minutes")
+print(f"//// RUN TIME: {shared.runtime(start=start)}")
 print("///////////////////////////////////////////////////////////////////////")
 
 start = time.time()
@@ -42,7 +42,7 @@ loggers["optim=sgd"] = dqn.run(
 )
 print("///////////////////////////////////////////////////////////////////////")
 print("//// ENDING EXPERIMENT: RUNNING WITH SGD OPTIMIZER")
-print("//// RUN TIME: ", (time.time() - start) / 60, " minutes")
+print(f"//// RUN TIME: {shared.runtime(start=start)}")
 print("///////////////////////////////////////////////////////////////////////")
 print("\a")
 

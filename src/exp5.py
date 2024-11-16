@@ -1,13 +1,13 @@
 import dqn
 import torch.nn as nn
 import matplotlib.pyplot as plt
-import time, datetime
-
+import time
 import settings
+import shared
 
 # experiment 5
 # modify cnn architectures
-episodes = 101
+episodes = 201
 exploration_rate_decay = 0.99996
 loggers = {}
 name = "05"
@@ -30,7 +30,7 @@ loggers["net=1"] = dqn.run(
 )
 print("///////////////////////////////////////////////////////////////////////")
 print("//// ENDING EXPERIMENT: RUNNING WITH DEFAULT NETWORK ARCHITECTURE")
-print("//// RUN TIME: ", (time.time() - start) / 60, " minutes")
+print(f"//// RUN TIME: {shared.runtime(start=start)}")
 print("///////////////////////////////////////////////////////////////////////")
 
 
@@ -60,7 +60,7 @@ loggers["net=less_layers"] = dqn.run(
 )
 print("///////////////////////////////////////////////////////////////////////")
 print("//// ENDING EXPERIMENT: RUNNING WITH REDUCED NUMBER OF LAYERS")
-print("//// RUN TIME: ", (time.time() - start) / 60, " minutes")
+print(f"//// RUN TIME: {shared.runtime(start=start)}")
 print("///////////////////////////////////////////////////////////////////////")
 
 
@@ -96,7 +96,7 @@ loggers["net=more_layers"] = dqn.run(
 )
 print("///////////////////////////////////////////////////////////////////////")
 print("//// ENDING EXPERIMENT: RUNNING WITH INCREASED NUMBER OF LAYERS")
-print("//// RUN TIME: ", (time.time() - start) / 60, " minutes")
+print(f"//// RUN TIME: {shared.runtime(start=start)}")
 print("///////////////////////////////////////////////////////////////////////")
 
 
@@ -128,7 +128,7 @@ loggers["net=low_channels"] = dqn.run(
 )
 print("///////////////////////////////////////////////////////////////////////")
 print("//// ENDING EXPERIMENT: RUNNING WITH REDUCED NUMBER OF CHANNELS")
-print("//// RUN TIME: ", (time.time() - start) / 60, " minutes")
+print(f"//// RUN TIME: {shared.runtime(start=start)}")
 print("///////////////////////////////////////////////////////////////////////")
 
 
@@ -160,7 +160,7 @@ loggers["net=high_channels"] = dqn.run(
 )
 print("///////////////////////////////////////////////////////////////////////")
 print("//// ENDING EXPERIMENT: RUNNING WITH INCREASED NUMBER OF CHANNELS")
-print("//// RUN TIME: ", (time.time() - start) / 60, " minutes")
+print(f"//// RUN TIME: {shared.runtime(start=start)}")
 print("///////////////////////////////////////////////////////////////////////")
 print("\a")
 

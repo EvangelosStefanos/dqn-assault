@@ -1,12 +1,12 @@
 import dqn
 import matplotlib.pyplot as plt
-import time, datetime
-
+import time
 import settings
+import shared
 
 # experiment 1
 # default parameters
-episodes = 101
+episodes = 201
 exploration_rate_decay = 0.99996
 loggers = {}
 name = "01"
@@ -23,7 +23,7 @@ loggers["default"] = dqn.run(
 )
 print("///////////////////////////////////////////////////////////////////////")
 print("//// ENDING EXPERIMENT: RUNNING WITH DEFAULT SETTINGS")
-print(f"//// RUN TIME: {(time.time() - start) / 60} minutes")
+print(f"//// RUN TIME: {shared.runtime(start=start)}")
 print("///////////////////////////////////////////////////////////////////////")
 print("\a")
 

@@ -1,6 +1,7 @@
 # Docker Compose version v2.29.2
 services:
   assault-dqn:
+    image: assault-dqn
     build: .
     deploy:
       resources:
@@ -9,5 +10,3 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
-    volumes:
-      - ./app:/app
